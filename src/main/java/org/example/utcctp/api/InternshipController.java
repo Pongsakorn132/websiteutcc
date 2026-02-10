@@ -1,24 +1,43 @@
 package org.example.utcctp.api;
 
-import org.example.utcctp.data.DemoDataService;
-import org.example.utcctp.data.InternshipSummary;
+import org.example.utcctp.api.dto.InternshipRequest;
+import org.example.utcctp.api.dto.InternshipResponse;
+import org.example.utcctp.internship.InternshipService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/internships")
 public class InternshipController {
-    private final DemoDataService demoDataService;
+    private final InternshipService internshipService;
 
-    public InternshipController(DemoDataService demoDataService) {
-        this.demoDataService = demoDataService;
+    public InternshipController(InternshipService internshipService) {
+        this.internshipService = internshipService;
     }
 
     @GetMapping
-    public List<InternshipSummary> listInternships() {
-        return demoDataService.listInternships();
+    public List<InternshipResponse> listInternships() {
+        return internshipService.listPositions();
+    }
+
+    @PostMapping
+    @PreAuthorize("hasRole('STAFF') or hasRole('ADMIN')")
+    public InternshipResponse createInternship(@RequestBody InternshipRequest request) {
+        return internshipService.createPosition(request);
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('STAFF') or hasRole('ADMIN')")
+    public InternshipResponse updateInternship(@PathVariable UUID id, @RequestBody InternshipRequest request) {
+        return internshipService.updatePosition(id, request);
     }
 }

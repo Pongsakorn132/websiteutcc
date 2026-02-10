@@ -4,7 +4,7 @@ public record AuthResponse(
         String token,
         UserProfile user
 ) {
-    public static AuthResponse from(DemoUser user, String token) {
+    public static AuthResponse from(org.example.utcctp.model.User user, String token) {
         return new AuthResponse(token, UserProfile.from(user));
     }
 }

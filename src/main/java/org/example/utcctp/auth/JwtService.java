@@ -5,12 +5,14 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import org.example.utcctp.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class JwtService {
@@ -28,15 +30,16 @@ public class JwtService {
         this.expiryMinutes = expiryMinutes;
     }
 
-    public String generateToken(DemoUser user) {
+    public String generateToken(User user) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
         Instant now = Instant.now();
         return JWT.create()
                 .withIssuer(issuer)
-                .withSubject(user.username())
+                .withSubject(user.getUsername())
                 .withIssuedAt(now)
                 .withExpiresAt(now.plus(expiryMinutes, ChronoUnit.MINUTES))
-                .withClaim("roles", user.roles())
+                .withClaim("roles", user.getRoles().stream().map(Enum::name).toList())
+                .withClaim("uid", user.getId().toString())
                 .sign(algorithm);
     }
 
@@ -47,7 +50,9 @@ public class JwtService {
             DecodedJWT decoded = verifier.verify(token);
             String username = decoded.getSubject();
             List<String> roles = decoded.getClaim("roles").asList(String.class);
-            return new JwtPrincipal(username, roles);
+            String userId = decoded.getClaim("uid").asString();
+            UUID id = userId == null ? null : UUID.fromString(userId);
+            return new JwtPrincipal(id, username, roles);
         } catch (JWTVerificationException ex) {
             return null;
         }
