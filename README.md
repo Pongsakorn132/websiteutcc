@@ -2,6 +2,16 @@
 
 Trip and Internship Management Platform (Spring Boot + Vue SPA).
 
+## Run (No DB Required)
+
+Default profile uses in-memory H2.
+
+```bash
+.\mvnw.cmd -DskipTests spring-boot:run
+```
+
+Open `http://localhost:8080/#/login`
+
 ## Run (PostgreSQL)
 
 1) Start database
@@ -11,11 +21,9 @@ docker compose up -d
 
 2) Run backend + web
 ```bash
+$env:SPRING_PROFILES_ACTIVE="postgres"
 .\mvnw.cmd -DskipTests spring-boot:run
 ```
-
-3) Open
-`http://localhost:8080/#/login`
 
 Default demo users:
 - student1 / pass123
