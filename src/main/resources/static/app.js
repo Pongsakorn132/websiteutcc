@@ -375,6 +375,9 @@ const messages = {
   },
 };
 
+const appConfig = window.__APP_CONFIG__ || {};
+const apiBase = (appConfig.apiBase || "").replace(/\/$/, "");
+
 const state = reactive({
   token: localStorage.getItem("utcctp_token") || "",
   user: null,
@@ -382,6 +385,7 @@ const state = reactive({
 });
 
 const apiFetch = async (path, options = {}) => {
+  const apiRoot = apiBase ? `${apiBase}/api/v1` : "/api/v1";
   const isFormData = options.body instanceof FormData;
   const headers = {
     ...(isFormData ? {} : { "Content-Type": "application/json" }),
@@ -390,7 +394,7 @@ const apiFetch = async (path, options = {}) => {
   if (state.token) {
     headers.Authorization = `Bearer ${state.token}`;
   }
-  const response = await fetch(`/api/v1${path}`, {
+  const response = await fetch(`${apiRoot}${path}`, {
     ...options,
     headers,
   });
@@ -798,7 +802,8 @@ const AppLayout = {
       if (!state.token) {
         return;
       }
-      eventSource = new EventSource(`/api/v1/notifications/stream?token=${state.token}`);
+      const apiRoot = apiBase ? `${apiBase}/api/v1` : "/api/v1";
+      eventSource = new EventSource(`${apiRoot}/notifications/stream?token=${state.token}`);
       eventSource.addEventListener("notification", () => {
         loadNotifications();
       });

@@ -30,3 +30,19 @@ Default demo users:
 - advisor1 / pass123
 - staff1 / pass123
 - admin1 / pass123
+
+## Deploy (Vercel + Render)
+
+Frontend (Vercel) serves `src/main/resources/static`. Set the backend URL in:
+
+`src/main/resources/static/config.js`
+
+Example:
+
+```js
+window.__APP_CONFIG__ = {
+  apiBase: "https://your-render-app.onrender.com",
+};
+```
+
+Backend (Render) must run the Spring Boot app and expose port 8080 (or set `PORT` + `server.port`).
