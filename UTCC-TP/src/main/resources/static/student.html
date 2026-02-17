@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>หน้าหลักนักศึกษา | UTCCTP</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .student-hero {
+        background: linear-gradient(135deg, #ffffff 0%, #fff4e4 100%);
+        border-radius: var(--radius);
+        padding: 32px;
+        box-shadow: var(--shadow);
+        margin-bottom: 28px;
+      }
+
+      .student-hero h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(28px, 3vw, 38px);
+        margin-bottom: 12px;
+        color: var(--ink);
+      }
+
+      .student-hero p {
+        color: var(--ink-soft);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+      }
+
+      .action-card {
+        background: var(--card);
+        padding: 20px;
+        border-radius: 16px;
+        border: 2px solid var(--border);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .action-card:hover {
+        border-color: var(--primary);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(28, 95, 90, 0.15);
+      }
+
+      .action-card h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: var(--ink);
+      }
+
+      .action-card p {
+        font-size: 14px;
+        color: var(--ink-soft);
+      }
+
+      .student-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .stat-card {
+        background: var(--card);
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+
+      .stat-card h2 {
+        font-size: 32px;
+        color: var(--primary);
+        margin-bottom: 8px;
+      }
+
+      .stat-card p {
+        font-size: 14px;
+        color: var(--ink-soft);
+      }
+
+      .application-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      .application-item {
+        background: var(--card);
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .application-info h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: var(--ink);
+      }
+
+      .application-info p {
+        font-size: 14px;
+        color: var(--ink-soft);
+        margin-bottom: 4px;
+      }
+
+      .application-status {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 768px) {
+        .application-item {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .application-status {
+          width: 100%;
+          justify-content: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-shape shape-one" aria-hidden="true"></div>
+    <div class="bg-shape shape-two" aria-hidden="true"></div>
+    <div class="bg-shape shape-three" aria-hidden="true"></div>
+
+    <header class="top-bar">
+      <div class="brand">
+        <div class="brand-mark">
+          <img src="./images/logo.png" alt="UTCC Logo" />
+        </div>
+        <div>
+          <p class="brand-title">UTCCTP</p>
+          <p class="brand-subtitle">สำหรับนักศึกษา</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="ghost" id="notificationBtn">การแจ้งเตือน</button>
+        <div class="avatar" id="userAvatar">ST</div>
+        <button class="ghost" id="logoutBtn">ออกจากระบบ</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <nav class="side-nav">
+        <button class="nav-item active" data-view="home">หน้าหลัก</button>
+        <button class="nav-item" data-view="my-trips">ทริปของฉัน</button>
+        <button class="nav-item" data-view="internships">ตำแหน่งฝึกงาน</button>
+        <button class="nav-item" data-view="applications">การสมัคร</button>
+        <button class="nav-item" data-view="reports">รายงาน</button>
+        <button class="nav-item" data-view="profile">ข้อมูลส่วนตัว</button>
+        <div class="nav-foot">
+          <span id="studentName">นักศึกษา</span>
+          <span id="studentId">รหัส: -</span>
+        </div>
+      </nav>
+
+      <main class="content">
+        <section class="view-section active" data-view-section="home">
+          <div class="student-hero reveal">
+            <p class="eyebrow">ยินดีต้อนรับ</p>
+            <h1 id="welcomeText">สวัสดี นักศึกษา</h1>
+            <p>
+              ระบบจัดการทริปและการฝึกงาน สำหรับนักศึกษา มหาวิทยาลัยหอการค้าไทย
+              คุณสามารถสมัครทริป ตำแหน่งฝึกงาน และส่งรายงานได้ที่นี่
+            </p>
+
+            <div class="quick-actions">
+              <div class="action-card" onclick="switchView('internships')">
+                <h3>🎯 หาตำแหน่งฝึกงาน</h3>
+                <p>เลือกตำแหน่งฝึกงานที่เหมาะกับคุณ</p>
+              </div>
+              <div class="action-card" onclick="switchView('my-trips')">
+                <h3>✈️ ดูทริปที่เปิดรับ</h3>
+                <p>สำรวจทริปการเรียนรู้</p>
+              </div>
+              <div class="action-card" onclick="switchView('reports')">
+                <h3>📝 ส่งรายงาน</h3>
+                <p>ส่งรายงานผลการเรียนรู้</p>
+              </div>
+              <div class="action-card" onclick="switchView('profile')">
+                <h3>👤 จัดการโปรไฟล์</h3>
+                <p>แก้ไขข้อมูลส่วนตัว</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="student-stats">
+            <div class="stat-card reveal">
+              <h2 id="tripCount">0</h2>
+              <p>ทริปที่เข้าร่วม</p>
+            </div>
+            <div class="stat-card reveal">
+              <h2 id="internshipCount">0</h2>
+              <p>ตำแหน่งฝึกงาน</p>
+            </div>
+            <div class="stat-card reveal">
+              <h2 id="applicationCount">0</h2>
+              <p>การสมัครทั้งหมด</p>
+            </div>
+            <div class="stat-card reveal">
+              <h2 id="reportCount">0</h2>
+              <p>รายงานที่ส่ง</p>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <div class="card-head">
+              <h2>การสมัครล่าสุด</h2>
+              <button class="link" onclick="switchView('applications')">ดูทั้งหมด</button>
+            </div>
+            <div id="recentApplications" class="application-list">
+              <p class="muted">กำลังโหลดข้อมูล...</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" data-view-section="my-trips">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">ทริป</p>
+              <h2>ทริปที่เปิดรับสมัคร</h2>
+            </div>
+            <div class="filters">
+              <button class="ghost">ทั้งหมด</button>
+              <button class="ghost">ที่สนใจ</button>
+              <button class="ghost">ที่เข้าร่วม</button>
+            </div>
+          </div>
+          <div id="tripsList" class="trip-grid">
+            <article class="trip-card reveal">
+              <h3>Industry Visit 2026</h3>
+              <p>เยี่ยมชมโรงงานและกระบวนการผลิตอุตสาหกรรม</p>
+              <div class="meta">
+                <span>📅 1-2 มี.ค. 2026</span>
+                <span>📍 กรุงเทพฯ</span>
+              </div>
+              <div class="meta">
+                <span>👥 เปิดรับ 30 คน</span>
+                <span class="status green">เปิดรับสมัคร</span>
+              </div>
+              <button class="ghost" onclick="window.location.href='trip-detail.html?id=1'">ดูรายละเอียด</button>
+              <button class="solid" onclick="window.location.href='trip-detail.html?id=1'">สมัครเข้าร่วม</button>
+            </article>
+
+            <article class="trip-card reveal">
+              <h3>Smart Factory Tour</h3>
+              <p>เรียนรู้เทคโนโลยี Industry 4.0 จากโรงงานจริง</p>
+              <div class="meta">
+                <span>📅 10 เม.ย. 2026</span>
+                <span>📍 ชลบุรี</span>
+              </div>
+              <div class="meta">
+                <span>👥 เปิดรับ 25 คน</span>
+                <span class="status green">เปิดรับสมัคร</span>
+              </div>
+              <button class="ghost" onclick="window.location.href='trip-detail.html?id=2'">ดูรายละเอียด</button>
+              <button class="solid" onclick="window.location.href='trip-detail.html?id=2'">สมัครเข้าร่วม</button>
+            </article>
+
+            <article class="trip-card reveal">
+              <h3>Research Lab Visit</h3>
+              <p>สร้างแรงบันดาลใจจากห้องวิจัยมหาวิทยาลัย</p>
+              <div class="meta">
+                <span>📅 3 พ.ค. 2026</span>
+                <span>📍 ปทุมธานี</span>
+              </div>
+              <div class="meta">
+                <span>👥 เปิดรับ 20 คน</span>
+                <span class="status amber">ใกล้ปิดรับ</span>
+              </div>
+              <button class="ghost" onclick="window.location.href='trip-detail.html?id=3'">ดูรายละเอียด</button>
+              <button class="solid" onclick="window.location.href='trip-detail.html?id=3'">สมัครเข้าร่วม</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="view-section" data-view-section="internships">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">ฝึกงาน</p>
+              <h2>ตำแหน่งฝึกงานที่เปิดรับ</h2>
+            </div>
+            <div class="filters">
+              <button class="ghost">ทั้งหมด</button>
+              <button class="ghost">เหมาะกับฉัน</button>
+              <button class="ghost">ยอดนิยม</button>
+            </div>
+          </div>
+          <div id="internshipsList" class="card-grid">
+            <div class="card accent reveal">
+              <h3>TechNova Co.</h3>
+              <p>Data Analyst (8 ตำแหน่ง)</p>
+              <div class="meta">
+                <span>📍 กรุงเทพฯ</span>
+                <span>💼 Hybrid</span>
+              </div>
+              <div class="meta">
+                <span>⏱️ 3-6 เดือน</span>
+                <span>💰 ค่าตอบแทน</span>
+              </div>
+              <button class="ghost" onclick="window.location.href='internship-detail.html?id=1'">ดูรายละเอียด</button>
+              <button class="solid" onclick="window.location.href='internship-detail.html?id=1'">สมัครฝึกงาน</button>
+            </div>
+
+            <div class="card accent reveal">
+              <h3>GreenGrid Energy</h3>
+              <p>Process Engineering (5 ตำแหน่ง)</p>
+              <div class="meta">
+                <span>📍 ชลบุรี</span>
+                <span>💼 On-site</span>
+              </div>
+              <div class="meta">
+                <span>⏱️ 4 เดือน</span>
+                <span>💰 ค่าตอบแทน</span>
+              </div>
+              <button class="ghost" onclick="window.location.href='internship-detail.html?id=2'">ดูรายละเอียด</button>
+              <button class="solid" onclick="window.location.href='internship-detail.html?id=2'">สมัครฝึกงาน</button>
+            </div>
+
+            <div class="card accent reveal">
+              <h3>Metro Logistics</h3>
+              <p>Operations Optimizer (6 ตำแหน่ง)</p>
+              <div class="meta">
+                <span>📍 ปทุมธานี</span>
+                <span>💼 On-site</span>
+              </div>
+              <div class="meta">
+                <span>⏱️ 3 เดือน</span>
+                <span>💰 ค่าตอบแทน</span>
+              </div>
+              <button class="ghost" onclick="window.location.href='internship-detail.html?id=3'">ดูรายละเอียด</button>
+              <button class="solid" onclick="window.location.href='internship-detail.html?id=3'">สมัครฝึกงาน</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" data-view-section="applications">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">การสมัคร</p>
+              <h2>ติดตามสถานะการสมัครของคุณ</h2>
+            </div>
+            <div class="filters">
+              <button class="ghost">ทั้งหมด</button>
+              <button class="ghost">รอการอนุมัติ</button>
+              <button class="ghost">อนุมัติแล้ว</button>
+            </div>
+          </div>
+          <div id="applicationsList" class="application-list">
+            <div class="application-item reveal">
+              <div class="application-info">
+                <h3>Industry Visit 2026</h3>
+                <p>ประเภท: ทริป</p>
+                <p>วันที่สมัคร: 5 ก.พ. 2026</p>
+              </div>
+              <div class="application-status">
+                <span class="status amber">รอการอนุมัติ</span>
+                <button class="ghost small">ดูรายละเอียด</button>
+              </div>
+            </div>
+
+            <div class="application-item reveal">
+              <div class="application-info">
+                <h3>Data Analyst - TechNova</h3>
+                <p>ประเภท: ฝึกงาน</p>
+                <p>วันที่สมัคร: 3 ก.พ. 2026</p>
+              </div>
+              <div class="application-status">
+                <span class="status green">อนุมัติแล้ว</span>
+                <button class="ghost small">ดูรายละเอียด</button>
+              </div>
+            </div>
+
+            <div class="application-item reveal">
+              <div class="application-info">
+                <h3>Smart Factory Tour</h3>
+                <p>ประเภท: ทริป</p>
+                <p>วันที่สมัคร: 1 ก.พ. 2026</p>
+              </div>
+              <div class="application-status">
+                <span class="status slate">ฉบับร่าง</span>
+                <button class="solid small">แก้ไข</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" data-view-section="reports">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">รายงาน</p>
+              <h2>รายงานผลการเรียนรู้และประเมินผล</h2>
+            </div>
+            <div class="filters">
+              <button class="solid">+ สร้างรายงานใหม่</button>
+            </div>
+          </div>
+          <div class="card-grid">
+            <div class="card reveal">
+              <h3>รายงานทริป Industry Visit 2026</h3>
+              <p>สถานะ: รอส่ง</p>
+              <div class="meta">
+                <span>กำหนดส่ง: 12 มี.ค. 2026</span>
+                <span class="status amber">ใกล้ครบกำหนด</span>
+              </div>
+              <button class="solid">อัพโหลดรายงาน</button>
+            </div>
+
+            <div class="card reveal">
+              <h3>รายงานการฝึกงาน Q2</h3>
+              <p>สถานะ: ส่งแล้ว</p>
+              <div class="meta">
+                <span>ส่งเมื่อ: 28 ม.ค. 2026</span>
+                <span class="status green">ตรวจแล้ว</span>
+              </div>
+              <div class="meta">
+                <span>คะแนน: A</span>
+              </div>
+              <button class="ghost">ดูรายงาน</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" data-view-section="profile">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">โปรไฟล์</p>
+              <h2>ข้อมูลส่วนตัวของคุณ</h2>
+            </div>
+          </div>
+          <div class="card reveal">
+            <h3>ข้อมูลนักศึกษา</h3>
+            <div class="form-group" style="margin-top: 20px;">
+              <label>ชื่อ-นามสกุล</label>
+              <input type="text" id="profileName" class="form-input" placeholder="ระบุชื่อ-นามสกุล" />
+            </div>
+            <div class="form-group">
+              <label>รหัสนักศึกษา</label>
+              <input type="text" id="profileStudentId" class="form-input" placeholder="รหัสนักศึกษา" readonly />
+            </div>
+            <div class="form-group">
+              <label>คณะ</label>
+              <input type="text" id="profileFaculty" class="form-input" placeholder="คณะ" />
+            </div>
+            <div class="form-group">
+              <label>สาขา</label>
+              <input type="text" id="profileMajor" class="form-input" placeholder="สาขาวิชา" />
+            </div>
+            <div class="form-group">
+              <label>อีเมล</label>
+              <input type="email" id="profileEmail" class="form-input" placeholder="อีเมล" />
+            </div>
+            <div class="form-group">
+              <label>เบอร์โทรศัพท์</label>
+              <input type="tel" id="profilePhone" class="form-input" placeholder="เบอร์โทรศัพท์" />
+            </div>
+            <button class="solid">บันทึกข้อมูล</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./student.js"></script>
+  </body>
+</html>

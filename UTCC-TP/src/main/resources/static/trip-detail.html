@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดทริป - UTCC Training Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+        }
+        .top-bar {
+            background: #ffffff;
+            padding: 16px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .brand {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button[type="submit"]:hover {
+            background: #357abd;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="top-bar">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" class="brand">UTCC Training Portal</a>
+            <div style="display: flex; gap: 24px;">
+                <a href="index.html" style="text-decoration: none; color: #495057; font-weight: 500;">หน้าแรก</a>
+                <a href="trips.html" style="text-decoration: none; color: #495057; font-weight: 500;">ทริปดูงาน</a>
+                <a href="about.html" style="text-decoration: none; color: #495057; font-weight: 500;">เกี่ยวกับเรา</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 48px 24px; color: white;">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div style="font-size: 14px; margin-bottom: 12px; opacity: 0.9;">ทริปดูงาน</div>
+            <h1 style="font-size: 36px; font-weight: 700; margin-bottom: 16px;">ทริปดูงานบริษัทชั้นนำ กรุงเทพฯ</h1>
+            <div style="display: flex; gap: 20px; font-size: 15px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span>🏢</span>
+                    <span>บริษัทชั้นนำ 5 แห่ง</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span>📍</span>
+                    <span>กรุงเทพฯ</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span>⏰</span>
+                    <span>เปิดรับสมัคร</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div style="max-width: 1400px; margin: 0 auto; padding: 24px;">
+        <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 32px;">
+            
+            <!-- Left: Info cards -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                <!-- Overview Card -->
+                <div style="background: #ffffff; padding: 24px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+                    <h3 style="font-size: 18px; font-weight: 700; margin: 0 0 16px 0; color: #1a1a1a;">ภาพรวมทริป</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div style="background: #f1f3f5; padding: 14px; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #868e96; margin-bottom: 4px;">ระยะเวลา</div>
+                            <div style="font-size: 15px; font-weight: 600; color: #212529;">2 วัน 1 คืน</div>
+                        </div>
+                        <div style="background: #f1f3f5; padding: 14px; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #868e96; margin-bottom: 4px;">สถานที่</div>
+                            <div style="font-size: 15px; font-weight: 600; color: #212529;">กรุงเทพฯ</div>
+                        </div>
+                        <div style="background: #f1f3f5; padding: 14px; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #868e96; margin-bottom: 4px;">ค่าใช้จ่าย</div>
+                            <div style="font-size: 15px; font-weight: 600; color: #212529;">ฟรี</div>
+                        </div>
+                        <div style="background: #f1f3f5; padding: 14px; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #868e96; margin-bottom: 4px;">เปิดรับ</div>
+                            <div style="font-size: 15px; font-weight: 600; color: #212529;">30 คน</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schedule Card -->
+                <div style="background: #ffffff; padding: 24px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+                    <h3 style="font-size: 18px; font-weight: 700; margin: 0 0 16px 0; color: #1a1a1a;">กำหนดการ</h3>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div>
+                            <div style="font-size: 15px; font-weight: 600; color: #4a90e2; margin-bottom: 8px;">วันที่ 1</div>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                                <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057; font-size: 14px;">
+                                    <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                                    08:00 - ออกเดินทางจาก UTCC
+                                </li>
+                                <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057; font-size: 14px;">
+                                    <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                                    10:00 - เยี่ยมชมบริษัทเทคโนโลยีชั้นนำ
+                                </li>
+                                <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057; font-size: 14px;">
+                                    <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                                    12:00 - รับประทานอาหารกลางวัน
+                                </li>
+                                <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057; font-size: 14px;">
+                                    <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                                    14:00 - เยี่ยมชมธุรกิจ Startup
+                                </li>
+                                <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057; font-size: 14px;">
+                                    <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                                    18:00 - เช็คอินโรงแรม
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div style="font-size: 15px; font-weight: 600; color: #4a90e2; margin-bottom: 8px;">วันที่ 2</div>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                                <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057; font-size: 14px;">
+                                    <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                                    08:00 - รับประทานอาหารเช้า
+                                </li>
+                                <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057; font-size: 14px;">
+                                    <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                                    09:00 - เยี่ยมชมบริษัทด้านการเงิน
+                                </li>
+                                <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057; font-size: 14px;">
+                                    <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                                    12:00 - รับประทานอาหารกลางวัน
+                                </li>
+                                <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057; font-size: 14px;">
+                                    <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                                    14:00 - Workshop & Networking
+                                </li>
+                                <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057; font-size: 14px;">
+                                    <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                                    17:00 - เดินทางกลับ UTCC
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Card -->
+                <div style="background: #ffffff; padding: 24px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+                    <h3 style="font-size: 18px; font-weight: 700; margin: 0 0 16px 0; color: #1a1a1a;">สิ่งที่ได้รับ</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                        <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057;">
+                            <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                            ค่าเดินทางและที่พักฟรี
+                        </li>
+                        <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057;">
+                            <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                            อาหารทุกมื้อตลอดทริป
+                        </li>
+                        <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057;">
+                            <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                            ประสบการณ์จากบริษัทชั้นนำ 5 แห่ง
+                        </li>
+                        <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057;">
+                            <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                            โอกาสสร้าง Network กับมืออาชีพ
+                        </li>
+                        <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057;">
+                            <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                            เกียรติบัตรเข้าร่วมทริป
+                        </li>
+                        <li style="padding-left: 24px; position: relative; line-height: 1.6; color: #495057;">
+                            <span style="position: absolute; left: 0; color: #4a90e2;">✓</span>
+                            ความรู้และแนวทางการทำงานจริง
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Status Card -->
+                <div style="background: #ffffff; padding: 24px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+                    <h3 style="font-size: 18px; font-weight: 700; margin: 0 0 16px 0; color: #1a1a1a;">สถานะการรับสมัคร</h3>
+                    <div style="background: #d3f9d8; padding: 16px; border-radius: 8px; border-left: 4px solid #37b24d;">
+                        <div style="font-size: 15px; font-weight: 600; color: #2b8a3e; margin-bottom: 4px;">🟢 เปิดรับสมัคร</div>
+                        <div style="font-size: 13px; color: #2f9e44;">ปิดรับสมัคร: 31 มีนาคม 2567</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                        <div style="font-size: 13px; color: #495057;">จำนวนผู้สมัคร: <strong>12 คน</strong></div>
+                        <div style="font-size: 13px; color: #495057; margin-top: 4px;">ที่นั่งว่าง: <strong>30 คน</strong></div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Right: Simple form -->
+            <div style="background: #ffffff; padding: 24px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); height: fit-content;">
+                <h3 style="font-size: 18px; font-weight: 700; margin: 0 0 20px 0; color: #1a1a1a;">สมัครเข้าร่วมทริป</h3>
+                <form id="tripForm">
+                    
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; font-size: 14px; font-weight: 500; color: #495057; margin-bottom: 6px;">ชื่อ-นามสกุล</label>
+                        <input type="text" name="fullname" required placeholder="กรอกชื่อ-นามสกุล">
+                    </div>
+
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; font-size: 14px; font-weight: 500; color: #495057; margin-bottom: 6px;">อีเมล</label>
+                        <input type="email" name="email" required placeholder="example@email.com">
+                    </div>
+
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; font-size: 14px; font-weight: 500; color: #495057; margin-bottom: 6px;">เบอร์โทรศัพท์</label>
+                        <input type="tel" name="phone" required placeholder="08X-XXX-XXXX">
+                    </div>
+
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; font-size: 14px; font-weight: 500; color: #495057; margin-bottom: 6px;">สาขาวิชา</label>
+                        <input type="text" name="major" required placeholder="เช่น บริหารธุรกิจ">
+                    </div>
+
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; font-size: 14px; font-weight: 500; color: #495057; margin-bottom: 6px;">ปีการศึกษา</label>
+                        <select name="year" required>
+                            <option value="">เลือกปีการศึกษา</option>
+                            <option value="1">ปี 1</option>
+                            <option value="2">ปี 2</option>
+                            <option value="3">ปี 3</option>
+                            <option value="4">ปี 4</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; font-size: 14px; font-weight: 500; color: #495057; margin-bottom: 6px;">GPA</label>
+                        <input type="text" name="gpa" required placeholder="เช่น 3.50">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; font-size: 14px; font-weight: 500; color: #495057; margin-bottom: 6px;">เหตุผลที่สนใจ</label>
+                        <textarea name="reason" rows="4" required placeholder="บอกเราว่าทำไมคุณถึงสนใจเข้าร่วมทริปนี้"></textarea>
+                    </div>
+
+                    <button type="submit">ส่งใบสมัคร</button>
+
+                    <div style="margin-top: 12px; text-align: center; font-size: 12px; color: #868e96;">
+                        การส่งใบสมัครถือว่าคุณยอมรับ <a href="#" style="color: #4a90e2; text-decoration: none;">เงื่อนไขการให้บริการ</a>
+                    </div>
+
+                </form>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background: #212529; color: #adb5bd; padding: 40px 24px; margin-top: 48px;">
+        <div style="max-width: 1400px; margin: 0 auto; text-align: center;">
+            <div style="font-size: 16px; font-weight: 600; color: #ffffff; margin-bottom: 12px;">UTCC Training Portal</div>
+            <div style="font-size: 14px; margin-bottom: 8px;">ระบบจัดการฝึกงานและสหกิจศึกษา มหาวิทยาลัยหอการค้าไทย</div>
+            <div style="font-size: 13px;">© 2024 UTCC. All rights reserved.</div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('tripForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('ส่งใบสมัครสำเร็จ! เราจะติดต่อกลับโดยเร็วที่สุด');
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>

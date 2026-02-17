@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>รายละเอียดทริป | UTCCTP</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .trip-detail-hero {
+        background: linear-gradient(135deg, #1c5f5a 0%, #2d8b82 100%);
+        color: white;
+        padding: 32px 28px;
+        border-radius: var(--radius);
+        margin-bottom: 24px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .trip-detail-hero::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+      }
+
+      .trip-detail-hero h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(24px, 3.5vw, 36px);
+        margin-bottom: 12px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .trip-detail-hero p {
+        font-size: 16px;
+        opacity: 0.95;
+        line-height: 1.5;
+        max-width: 800px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .trip-meta {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .trip-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 16px;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+      }
+
+      .trip-detail-content {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 28px;
+        margin-bottom: 24px;
+      }
+
+      @media (min-width: 1440px) {
+        .trip-detail-content {
+          grid-template-columns: 1fr 440px;
+        }
+      }
+
+      .detail-section {
+        background: var(--card);
+        padding: 28px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+      }
+
+      .detail-section h2 {
+        font-size: 22px;
+        margin-bottom: 16px;
+        color: var(--ink);
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .detail-section h3 {
+        font-size: 17px;
+        margin-top: 20px;
+        margin-bottom: 12px;
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .detail-section p {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 14px;
+        color: var(--ink-soft);
+      }
+
+      .detail-section ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 16px;
+      }
+
+      .detail-section ul li {
+        padding: 8px 0;
+        padding-left: 28px;
+        position: relative;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .detail-section ul li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .application-form {
+        background: var(--card);
+        padding: 24px 20px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 90px;
+        min-width: 320px;
+      }
+
+      .application-form h2 {
+        font-size: 18px;
+        margin-bottom: 14px;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .form-group {
+        margin-bottom: 14px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: var(--ink);
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 10px 12px;
+        border: 2px solid var(--border);
+        border-radius: 10px;
+        font-size: 13px;
+        font-family: inherit;
+        transition: all 0.2s ease;
+        background: #fff;
+        box-sizing: border-box;
+      }
+
+      .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(28, 95, 90, 0.1);
+      }
+
+      .file-upload {
+        border: 2px dashed var(--border);
+        padding: 16px;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #f8f8f8;
+      }
+
+      .file-upload p {
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      .file-upload small {
+        font-size: 11px;
+        color: var(--ink-soft);
+      }
+
+      .file-upload:hover {
+        border-color: var(--primary);
+        background: rgba(28, 95, 90, 0.05);
+      }
+
+      .file-upload input[type="file"] {
+        display: none;
+      }
+
+      .file-list {
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--ink-soft);
+      }
+
+      .participants-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .participant-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        background: #f8f8f8;
+        border-radius: 10px;
+      }
+
+      .participant-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        display: grid;
+        place-items: center;
+        font-weight: 600;
+        font-size: 13px;
+        flex-shrink: 0;
+      }
+
+      .participant-info h4 {
+        font-size: 14px;
+        margin-bottom: 2px;
+        font-weight: 600;
+      }
+
+      .participant-info p {
+        font-size: 12px;
+        color: var(--ink-soft);
+      }
+
+      .timeline {
+        position: relative;
+        padding-left: 36px;
+        margin-top: 16px;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, var(--primary), rgba(28, 95, 90, 0.3));
+        border-radius: 2px;
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 28px;
+        background: #f9fafb;
+        padding: 16px;
+        border-radius: 12px;
+        border-left: 3px solid var(--primary);
+        margin-left: -24px;
+        padding-left: 28px;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -27px;
+        top: 20px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: white;
+        border: 3px solid var(--primary);
+        box-shadow: 0 0 0 3px white;
+      }
+
+      .timeline-item h4 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .timeline-item p {
+        font-size: 14px;
+        color: var(--ink-soft);
+        line-height: 1.6;
+        margin-bottom: 6px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .timeline-item p::before {
+        content: "🕐";
+        position: absolute;
+        left: 0;
+        font-size: 12px;
+      }
+
+      .accordion-container {
+        margin-bottom: 16px;
+      }
+
+      .accordion-container input[type="radio"],
+      .accordion-container input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 0;
+        height: 0;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        position: absolute;
+      }
+
+      .accordion-item {
+        background: white;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border: 1px solid var(--border);
+      }
+
+      .accordion-header {
+        padding: 16px 20px;
+        background: linear-gradient(to right, #f8f9fa, #ffffff);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+        user-select: none;
+      }
+
+      .accordion-header:hover {
+        background: linear-gradient(to right, #e8f5f4, #f0f8f7);
+      }
+
+      .accordion-header h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--ink);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .accordion-icon {
+        font-size: 14px;
+        color: var(--primary);
+        transition: transform 0.3s ease;
+        font-weight: bold;
+      }
+
+      .accordion-item.active .accordion-icon {
+        transform: rotate(90deg);
+      }
+
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+
+      .accordion-item.active .accordion-content {
+        max-height: 600px;
+        overflow-y: auto;
+      }
+
+      .accordion-body {
+        padding: 20px;
+        background: #fafbfc;
+      }
+
+      .accordion-body input[type="radio"],
+      .accordion-body input[type="checkbox"] {
+        display: none;
+      }
+
+      .accordion-body ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+      }
+
+      .accordion-body ul li::before {
+        content: none;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .info-card {
+        background: #f9fafb;
+        padding: 16px;
+        border-radius: 12px;
+        border-left: 4px solid var(--primary);
+      }
+
+      .info-card h4 {
+        font-size: 14px;
+        color: var(--ink-soft);
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .info-card p {
+        font-size: 18px;
+        color: var(--ink);
+        font-weight: 600;
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .trip-detail-content {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .application-form {
+          position: relative;
+          top: 0;
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 32px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+          padding: 14px 16px;
+          font-size: 15px;
+        }
+
+        .form-group label {
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .application-form {
+          padding: 24px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-shape shape-one" aria-hidden="true"></div>
+    <div class="bg-shape shape-two" aria-hidden="true"></div>
+
+    <header class="top-bar">
+      <div class="brand">
+        <div class="brand-mark">
+          <img src="./images/logo.png" alt="UTCC Logo" />
+        </div>
+        <div>
+          <p class="brand-title">UTCCTP</p>
+          <p class="brand-subtitle">Trip Details</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="ghost" onclick="history.back()">← กลับ</button>
+        <div class="avatar" id="userAvatar">ST</div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <main class="content" style="max-width: 1400px; margin: 0 auto; padding: 24px 32px">
+        <div class="trip-detail-hero">
+          <h1 id="tripTitle">Industry Visit 2026</h1>
+          <p id="tripDescription">
+            เยี่ยมชมโรงงานและกระบวนการผลิตอุตสาหกรรมชั้นนำ เพื่อสร้างแรงบันดาลใจและความเข้าใจในการทำงานจริง
+          </p>
+          <div class="trip-meta">
+            <div class="trip-meta-item">
+              <span>📅</span>
+              <span id="tripDate">1-2 มี.ค. 2026</span>
+            </div>
+            <div class="trip-meta-item">
+              <span>📍</span>
+              <span id="tripLocation">กรุงเทพฯ</span>
+            </div>
+            <div class="trip-meta-item">
+              <span>👥</span>
+              <span id="tripCapacity">เปิดรับ 30 คน</span>
+            </div>
+            <div class="trip-meta-item">
+              <span>💰</span>
+              <span id="tripCost">ฟรี</span>
+            </div>
+          </div>
+          
+          <div style="margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.15); border-radius: 12px; backdrop-filter: blur(10px);">
+            <h3 style="font-size: 14px; margin-bottom: 8px; font-weight: 600;">คุณสมบัติผู้สมัคร</h3>
+            <div id="eligibilityInfo" style="font-size: 13px; line-height: 1.6; white-space: pre-line;">
+              📚 เปิดรับทุกคณะ
+              👨‍🎓 รับทุกชั้นปี
+            </div>
+          </div>
+        </div>
+
+        <div class="trip-detail-content">
+          <div>
+            <div class="accordion-container">
+              
+              <div class="accordion-item active">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <h3><span>📊</span> ภาพรวมทริป</h3>
+                  <span class="accordion-icon">▶</span>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-body">
+                    <div class="info-grid">
+                      <div class="info-card">
+                        <h4>📅 ระยะเวลา</h4>
+                        <p>2 วัน 1 คืน</p>
+                      </div>
+                      <div class="info-card">
+                        <h4>🏭 โรงงาน</h4>
+                        <p>2 แห่ง</p>
+                      </div>
+                      <div class="info-card">
+                        <h4>💰 ค่าใช้จ่าย</h4>
+                        <p>ฟรี</p>
+                      </div>
+                      <div class="info-card">
+                        <h4>👥 เปิดรับ</h4>
+                        <p>30 คน</p>
+                      </div>
+                    </div>
+                    <p style="font-size: 14px; line-height: 1.7; color: var(--ink-soft); margin-top: 16px;">
+                      เยี่ยมชมโรงงานชั้นนำและเรียนรู้กระบวนการผลิตอุตสาหกรรมจริง พบปะผู้เชี่ยวชาญ และเข้าร่วม Workshop เชิงปฏิบัติการ
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <h3><span>📅</span> กำหนดการ</h3>
+                  <span class="accordion-icon">▶</span>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-body">
+                    <div style="font-size: 14px; line-height: 1.8; color: var(--ink-soft);">
+                      <strong>วันที่ 1:</strong> Toyota Factory • Lean Manufacturing Workshop<br>
+                      <strong>วันที่ 2:</strong> Siam Cement Group • พูดคุยกับ Engineer
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <h3><span>🎁</span> สิ่งที่ได้รับ</h3>
+                  <span class="accordion-icon">▶</span>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-body">
+                    <ul style="font-size: 14px; line-height: 1.8; padding-left: 0; list-style: none; margin: 0;">
+                      <li style="padding: 4px 0;">✓ ความรู้ Industry 4.0 & Lean Manufacturing</li>
+                      <li style="padding: 4px 0;">✓ รถโดยสาร + อาหารทุกมื้อ</li>
+                      <li style="padding: 4px 0;">✓ ประกันอุบัติเหตุ + เสื้อกิจกรรม</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <h3><span>👥</span> ผู้เข้าร่วม (12/30)</h3>
+                  <span class="accordion-icon">▶</span>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-body">
+                    <div style="font-size: 14px; color: var(--ink-soft);">
+                      มี 12 คนสมัครแล้ว เหลืออีก 18 ที่นั่ง<br>
+                      <span style="color: var(--primary); font-weight: 600;">สมัครเร็ว!</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div>
+            <div class="application-form">
+              <h2>สมัครเข้าร่วมทริป</h2>
+              <form id="applicationForm">
+                <div class="form-group">
+                  <label for="fullName">ชื่อ-นามสกุล *</label>
+                  <input type="text" id="fullName" required placeholder="ระบุชื่อ-นามสกุล" />
+                </div>
+
+                <div class="form-group">
+                  <label for="studentId">รหัสนักศึกษา *</label>
+                  <input type="text" id="studentId" required placeholder="เช่น 6501234567" />
+                </div>
+
+                <div class="form-group">
+                  <label for="faculty">คณะ *</label>
+                  <select id="faculty" required>
+                    <option value="">-- เลือกคณะ --</option>
+                    <option value="engineering">วิศวกรรมศาสตร์</option>
+                    <option value="business">บริหารธุรกิจ</option>
+                    <option value="science">วิทยาศาสตร์</option>
+                    <option value="humanities">มนุษยศาสตร์</option>
+                    <option value="economics">เศรษฐศาสตร์</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="year">ชั้นปี *</label>
+                  <select id="year" required>
+                    <option value="">-- เลือกชั้นปี --</option>
+                    <option value="1">ปี 1</option>
+                    <option value="2">ปี 2</option>
+                    <option value="3">ปี 3</option>
+                    <option value="4">ปี 4</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">เบอร์โทรศัพท์ *</label>
+                  <input type="tel" id="phone" required placeholder="08X-XXX-XXXX" />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">อีเมล *</label>
+                  <input type="email" id="email" required placeholder="example@utcc.ac.th" />
+                </div>
+
+                <div class="form-group">
+                  <label for="motivation">เหตุผลที่สมัคร *</label>
+                  <textarea
+                    id="motivation"
+                    required
+                    placeholder="บอกเราว่าทำไมคุณถึงสนใจเข้าร่วมทริปนี้..."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>อัพโหลดเอกสาร</label>
+                  <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                    <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png" />
+                    <p>📎 คลิกเพื่อเลือกไฟล์</p>
+                    <small>รองรับ PDF, JPG, PNG (สูงสุด 5 MB)</small>
+                    <div class="file-list" id="fileList"></div>
+                  </div>
+                </div>
+
+                <button type="submit" class="solid" style="width: 100%; margin-top: 16px">
+                  ส่งใบสมัคร
+                </button>
+              </form>
+            </div>
+
+            <div class="card" style="margin-top: 24px">
+              <h3 style="margin-bottom: 12px">ติดต่อสอบถาม</h3>
+              <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6">
+                📧 อีเมล: trips@utcc.ac.th<br />
+                📞 โทร: 02-XXX-XXXX<br />
+                ⏰ เวลาทำการ: จ-ศ 9:00-17:00 น.
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      function toggleAccordion(header) {
+        const item = header.parentElement;
+        const wasActive = item.classList.contains('active');
+        
+        document.querySelectorAll('.accordion-item').forEach(i => {
+          i.classList.remove('active');
+        });
+        
+        if (!wasActive) {
+          item.classList.add('active');
+        }
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const tripId = urlParams.get("id") || "1";
+
+      const fileInput = document.getElementById("fileInput");
+      const fileList = document.getElementById("fileList");
+
+      fileInput.addEventListener("change", () => {
+        const files = Array.from(fileInput.files);
+        if (files.length > 0) {
+          fileList.innerHTML = files.map((f) => `<div>✓ ${f.name}</div>`).join("");
+        }
+      });
+
+      document.getElementById("applicationForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = {
+          tripId: tripId,
+          fullName: document.getElementById("fullName").value,
+          studentId: document.getElementById("studentId").value,
+          faculty: document.getElementById("faculty").value,
+          year: document.getElementById("year").value,
+          phone: document.getElementById("phone").value,
+          email: document.getElementById("email").value,
+          motivation: document.getElementById("motivation").value,
+        };
+
+        alert("✅ ส่งใบสมัครเรียบร้อยแล้ว!\n\nคุณจะได้รับการแจ้งเตือนเมื่อมีการพิจารณาผล");
+
+        setTimeout(() => {
+          window.location.href = "student.html";
+        }, 1500);
+      });
+
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      if (user.name) {
+        document.getElementById("userAvatar").textContent = user.name.substring(0, 2).toUpperCase();
+      }
+    </script>
+  </body>
+</html>

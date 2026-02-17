@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>รายละเอียดตำแหน่งฝึกงาน | UTCCTP</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .internship-hero {
+        background: linear-gradient(135deg, #d96b2f 0%, #e89060 100%);
+        color: white;
+        padding: 32px 28px;
+        border-radius: var(--radius);
+        margin-bottom: 24px;
+      }
+
+      .company-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .company-logo {
+        width: 70px;
+        height: 70px;
+        background: white;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .company-info h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(22px, 3vw, 32px);
+        margin-bottom: 6px;
+      }
+
+      .company-info p {
+        font-size: 16px;
+        opacity: 0.95;
+      }
+
+      .job-highlights {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .highlight-box {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 14px;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+      }
+
+      .highlight-box h3 {
+        font-size: 13px;
+        opacity: 0.9;
+        margin-bottom: 4px;
+        font-weight: 500;
+      }
+
+      .highlight-box p {
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .requirement-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        background: rgba(28, 95, 90, 0.1);
+        border: 1px solid rgba(28, 95, 90, 0.3);
+        border-radius: 8px;
+        font-size: 14px;
+        margin: 4px;
+        color: var(--primary);
+      }
+
+      .benefit-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+        background: #f8f8f8;
+        border-radius: 12px;
+        margin-bottom: 12px;
+      }
+
+      .benefit-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--accent);
+        color: white;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+
+      .benefit-info h4 {
+        font-size: 16px;
+        margin-bottom: 4px;
+        color: var(--ink);
+      }
+
+      .benefit-info p {
+        font-size: 14px;
+        color: var(--ink-soft);
+        line-height: 1.5;
+      }
+
+      .trip-detail-content {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 28px;
+        margin-bottom: 24px;
+      }
+
+      @media (min-width: 1440px) {
+        .trip-detail-content {
+          grid-template-columns: 1fr 440px;
+        }
+      }
+
+      .detail-section {
+        background: var(--card);
+        padding: 28px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+      }
+
+      .detail-section h2 {
+        font-size: 22px;
+        margin-bottom: 16px;
+        color: var(--ink);
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .detail-section h3 {
+        font-size: 17px;
+        margin-top: 20px;
+        margin-bottom: 12px;
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .detail-section p {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 14px;
+        color: var(--ink-soft);
+      }
+
+      .detail-section ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 16px;
+      }
+
+      .detail-section ul li {
+        padding: 8px 0;
+        padding-left: 28px;
+        position: relative;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .detail-section ul li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .application-form {
+        background: var(--card);
+        padding: 24px 20px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 90px;
+        min-width: 320px;
+      }
+
+      .application-form h2 {
+        font-size: 18px;
+        margin-bottom: 14px;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .tabs-container {
+        margin-bottom: 24px;
+      }
+
+      .tabs-nav {
+        display: flex;
+        gap: 8px;
+        border-bottom: 2px solid var(--border);
+        margin-bottom: 24px;
+      }
+
+      .tab-button {
+        padding: 12px 24px;
+        background: none;
+        border: none;
+        border-bottom: 3px solid transparent;
+        color: var(--ink-soft);
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        margin-bottom: -2px;
+      }
+
+      .tab-button:hover {
+        color: var(--primary);
+      }
+
+      .tab-button.active {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+      }
+
+      .tab-content {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .info-card {
+        background: #f9fafb;
+        padding: 16px;
+        border-radius: 12px;
+        border-left: 4px solid var(--primary);
+      }
+
+      .info-card h4 {
+        font-size: 14px;
+        color: var(--ink-soft);
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .info-card p {
+        font-size: 18px;
+        color: var(--ink);
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .timeline {
+        position: relative;
+        padding-left: 36px;
+        margin-top: 16px;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, var(--primary), rgba(28, 95, 90, 0.3));
+        border-radius: 2px;
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 28px;
+        background: #f9fafb;
+        padding: 16px;
+        border-radius: 12px;
+        border-left: 3px solid var(--primary);
+        margin-left: -24px;
+        padding-left: 28px;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -27px;
+        top: 20px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: white;
+        border: 3px solid var(--primary);
+        box-shadow: 0 0 0 3px white;
+      }
+
+      .timeline-item h4 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .timeline-item p {
+        font-size: 14px;
+        color: var(--ink-soft);
+        line-height: 1.6;
+        margin-bottom: 6px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .timeline-item p::before {
+        content: "🕐";
+        position: absolute;
+        left: 0;
+        font-size: 12px;
+      }
+
+      .participants-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .participant-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        background: #f8f8f8;
+        border-radius: 10px;
+      }
+
+      .participant-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        display: grid;
+        place-items: center;
+        font-weight: 600;
+        font-size: 13px;
+        flex-shrink: 0;
+      }
+
+      .participant-info h4 {
+        font-size: 14px;
+        margin-bottom: 2px;
+        font-weight: 600;
+      }
+
+      .participant-info p {
+        font-size: 12px;
+        color: var(--ink-soft);
+      }
+
+      @media (max-width: 768px) {
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .form-group {
+        margin-bottom: 14px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: var(--ink);
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 10px 12px;
+        border: 2px solid var(--border);
+        border-radius: 10px;
+        font-size: 13px;
+        font-family: inherit;
+        transition: all 0.2s ease;
+        background: #fff;
+        box-sizing: border-box;
+      }
+
+      .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(28, 95, 90, 0.1);
+      }
+
+      .file-upload {
+        border: 2px dashed var(--border);
+        padding: 16px;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #f8f8f8;
+      }
+
+      .file-upload p {
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      .file-upload small {
+        font-size: 11px;
+        color: var(--ink-soft);
+      }
+
+      .file-upload:hover {
+        border-color: var(--primary);
+        background: rgba(28, 95, 90, 0.05);
+      }
+
+      .file-upload input[type="file"] {
+        display: none;
+      }
+
+      .file-list {
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--ink-soft);
+      }
+
+      @media (max-width: 1200px) {
+        .trip-detail-content {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .application-form {
+          position: relative;
+          top: 0;
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 32px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+          padding: 14px 16px;
+          font-size: 15px;
+        }
+
+        .form-group label {
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .application-form {
+          padding: 24px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-shape shape-one" aria-hidden="true"></div>
+    <div class="bg-shape shape-two" aria-hidden="true"></div>
+
+    <header class="top-bar">
+      <div class="brand">
+        <div class="brand-mark">
+          <img src="./images/logo.png" alt="UTCC Logo" />
+        </div>
+        <div>
+          <p class="brand-title">UTCCTP</p>
+          <p class="brand-subtitle">Internship Details</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="ghost" onclick="history.back()">← กลับ</button>
+        <div class="avatar" id="userAvatar">ST</div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <main class="content" style="max-width: 1400px; margin: 0 auto; padding: 24px 32px">
+        <div class="internship-hero">
+          <div class="company-header">
+            <div class="company-logo">TN</div>
+            <div class="company-info">
+              <h1>Data Analyst</h1>
+              <p>TechNova Co., Ltd.</p>
+            </div>
+          </div>
+
+          <div class="job-highlights">
+            <div class="highlight-box">
+              <h3>สถานที่</h3>
+              <p>📍 กรุงเทพฯ (Hybrid)</p>
+            </div>
+            <div class="highlight-box">
+              <h3>ระยะเวลา</h3>
+              <p>⏱️ 3-6 เดือน</p>
+            </div>
+            <div class="highlight-box">
+              <h3>ค่าตอบแทน</h3>
+              <p>💰 12,000-15,000 บาท/เดือน</p>
+            </div>
+            <div class="highlight-box">
+              <h3>เปิดรับ</h3>
+              <p>👥 8 ตำแหน่ง</p>
+            </div>
+          </div>
+          
+          <div style="margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.15); border-radius: 12px; backdrop-filter: blur(10px);">
+            <h3 style="font-size: 14px; margin-bottom: 8px; font-weight: 600;">คุณสมบัติผู้สมัคร</h3>
+            <div id="eligibilityInfo" style="font-size: 13px; line-height: 1.6; white-space: pre-line;">
+              📚 เปิดรับทุกคณะ
+              👨‍🎓 รับทุกชั้นปี
+            </div>
+          </div>
+        </div>
+
+        <div class="trip-detail-content">
+          <div>
+            <div class="detail-section tabs-container">
+              <div class="tabs-nav">
+                <button class="tab-button active" onclick="switchTab('overview')">ภาพรวม</button>
+                <button class="tab-button" onclick="switchTab('schedule')">กำหนดการ</button>
+                <button class="tab-button" onclick="switchTab('benefits')">สิ่งที่ได้รับ</button>
+                <button class="tab-button" onclick="switchTab('applicants')">ผู้สมัคร</button>
+              </div>
+
+              <div id="overview" class="tab-content active">
+                <h2>เกี่ยวกับบริษัท</h2>
+                <p style="font-size: 16px; line-height: 1.8; color: var(--ink);">
+                  TechNova เป็นบริษัทเทคโนโลยีชั้นนำที่เชี่ยวชาญด้าน Data Analytics และ Business Intelligence
+                  เรามุ่งเน้นการใช้ข้อมูลเพื่อสร้างคุณค่าทางธุรกิจให้กับลูกค้าในหลากหลายอุตสาหกรรม
+                  ด้วยทีมงานมืออาชีพและเทคโนโลยีที่ทันสมัย
+                </p>
+                <p style="margin-top: 12px; font-size: 16px; line-height: 1.8; color: var(--ink);">
+                  เราเชื่อในการพัฒนาบุคลากรรุ่นใหม่ และมอบโอกาสให้นักศึกษาได้เรียนรู้ประสบการณ์จริง
+                  พร้อมคำแนะนำจากผู้เชี่ยวชาญในสายงาน
+                </p>
+
+                <div class="info-grid">
+                  <div class="info-card">
+                    <h4>📍 สถานที่ทำงาน</h4>
+                    <p>กรุงเทพฯ (Hybrid)</p>
+                  </div>
+                  <div class="info-card">
+                    <h4>⏱️ ระยะเวลา</h4>
+                    <p>3-6 เดือน</p>
+                  </div>
+                  <div class="info-card">
+                    <h4>💰 ค่าตอบแทน</h4>
+                    <p>12,000-15,000 บาท</p>
+                  </div>
+                  <div class="info-card">
+                    <h4>👥 เปิดรับ</h4>
+                    <p>8 ตำแหน่ง</p>
+                  </div>
+                </div>
+
+                <h3>คุณสมบัติผู้สมัคร</h3>
+                <div style="margin-top: 12px">
+                  <span class="requirement-badge">📚 ปริญญาตรี สาขาที่เกี่ยวข้อง</span>
+                  <span class="requirement-badge">💻 ความรู้ Excel ขั้นสูง</span>
+                  <span class="requirement-badge">📊 SQL เบื้องต้น</span>
+                  <span class="requirement-badge">🐍 Python/R (พื้นฐาน)</span>
+                  <span class="requirement-badge">🎨 Power BI/Tableau (พื้นฐาน)</span>
+                  <span class="requirement-badge">🗣️ สื่อสารภาษาอังกฤษได้</span>
+                  <span class="requirement-badge">✨ ทัศนคติดี มีใจรักการเรียนรู้</span>
+                </div>
+
+                <h3>ทักษะที่พึงประสงค์</h3>
+                <ul>
+                  <li>มีประสบการณ์ทำ Project เกี่ยวกับ Data Analysis</li>
+                  <li>เข้าใจ Statistics และ Data Visualization</li>
+                  <li>มี Portfolio หรือ GitHub แสดงผลงาน</li>
+                  <li>ความสนใจใน Machine Learning</li>
+                </ul>
+              </div>
+
+              <div id="schedule" class="tab-content">
+                <h3 style="margin-top: 0;">หน้าที่รับผิดชอบ</h3>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <h4>การวิเคราะห์ข้อมูล</h4>
+                    <p>วิเคราะห์และจัดการข้อมูลจากแหล่งข้อมูลต่างๆ</p>
+                    <p>ทำ Data Cleaning และ Data Transformation</p>
+                  </div>
+                  <div class="timeline-item">
+                    <h4>การสร้างรายงาน</h4>
+                    <p>สร้าง Dashboard และรายงานด้วย Power BI / Tableau</p>
+                    <p>นำเสนอผลการวิเคราะห์ต่อทีม</p>
+                  </div>
+                  <div class="timeline-item">
+                    <h4>การเรียนรู้และพัฒนา</h4>
+                    <p>เรียนรู้เครื่องมือและเทคนิคใหม่ๆ ในการวิเคราะห์ข้อมูล</p>
+                    <p>สนับสนุนทีม Data Science ในโปรเจกต์ต่างๆ</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="benefits" class="tab-content">
+                <h3 style="margin-top: 0;">สิทธิประโยชน์</h3>
+                <div class="benefit-item">
+                  <div class="benefit-icon">💵</div>
+                  <div class="benefit-info">
+                    <h4>ค่าตอบแทนและโบนัส</h4>
+                    <p>เงินเดือน 12,000-15,000 บาท/เดือน + โบนัสตามผลงาน</p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-icon">🏥</div>
+                  <div class="benefit-info">
+                    <h4>ประกันสุขภาพ</h4>
+                    <p>ประกันสุขภาพและอุบัติเหตุครอบคลุมตลอดระยะเวลาฝึกงาน</p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-icon">🎓</div>
+                  <div class="benefit-info">
+                    <h4>การฝึกอบรม</h4>
+                    <p>Training หลักสูตรต่างๆ และ Workshop จากผู้เชี่ยวชาญ</p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-icon">💼</div>
+                  <div class="benefit-info">
+                    <h4>โอกาสในการทำงาน</h4>
+                    <p>พิจารณารับเป็นพนักงานประจำหากผลงานดีเด่น</p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-icon">🏢</div>
+                  <div class="benefit-info">
+                    <h4>สภาพแวดล้อมการทำงาน</h4>
+                    <p>Office ทันสมัย, Work from Home 2 วัน/สัปดาห์, ของว่างฟรี</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="applicants" class="tab-content">
+                <h3 style="margin-top: 0;">ผู้สมัครปัจจุบัน (15/8)</h3>
+                <div class="participants-list">
+                  <div class="participant-item">
+                    <div class="participant-avatar">นส</div>
+                    <div class="participant-info">
+                      <h4>นางสาวสมหญิง ใจดี</h4>
+                      <p>รหัส: 6501234567 | คณะวิศวกรรมศาสตร์</p>
+                    </div>
+                    <span class="status green">อนุมัติแล้ว</span>
+                  </div>
+                  <div class="participant-item">
+                    <div class="participant-avatar">นส</div>
+                    <div class="participant-info">
+                      <h4>นายสมชาย รักเรียน</h4>
+                      <p>รหัส: 6501234568 | คณะบริหารธุรกิจ</p>
+                    </div>
+                    <span class="status green">อนุมัติแล้ว</span>
+                  </div>
+                  <div class="participant-item">
+                    <div class="participant-avatar">นส</div>
+                    <div class="participant-info">
+                      <h4>นางสาวพิมพ์ใจ สวยงาม</h4>
+                      <p>รหัส: 6501234569 | คณะวิทยาศาสตร์</p>
+                    </div>
+                    <span class="status amber">รอการอนุมัติ</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="application-form">
+              <h2>สมัครฝึกงาน</h2>
+              <form id="internshipForm">
+                <div class="form-group">
+                  <label for="fullName">ชื่อ-นามสกุล *</label>
+                  <input type="text" id="fullName" required placeholder="ระบุชื่อ-นามสกุล" />
+                </div>
+
+                <div class="form-group">
+                  <label for="studentId">รหัสนักศึกษา *</label>
+                  <input type="text" id="studentId" required placeholder="เช่น 6501234567" />
+                </div>
+
+                <div class="form-group">
+                  <label for="faculty">คณะ / สาขา *</label>
+                  <input type="text" id="faculty" required placeholder="เช่น วิศวกรรมคอมพิวเตอร์" />
+                </div>
+
+                <div class="form-group">
+                  <label for="gpa">GPAX *</label>
+                  <input type="number" id="gpa" required placeholder="เช่น 3.50" step="0.01" min="0" max="4" />
+                </div>
+
+                <div class="form-group">
+                  <label for="startDate">วันที่สามารถเริ่มงาน *</label>
+                  <input type="date" id="startDate" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="duration">ระยะเวลาที่ต้องการฝึกงาน *</label>
+                  <select id="duration" required>
+                    <option value="">-- เลือกระยะเวลา --</option>
+                    <option value="3">3 เดือน</option>
+                    <option value="4">4 เดือน</option>
+                    <option value="5">5 เดือน</option>
+                    <option value="6">6 เดือน</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">เบอร์โทรศัพท์ *</label>
+                  <input type="tel" id="phone" required placeholder="08X-XXX-XXXX" />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">อีเมล *</label>
+                  <input type="email" id="email" required placeholder="example@utcc.ac.th" />
+                </div>
+
+                <div class="form-group">
+                  <label for="skills">ทักษะที่มี *</label>
+                  <textarea
+                    id="skills"
+                    required
+                    placeholder="เช่น Python, SQL, Power BI, Excel..."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="experience">ประสบการณ์ / โปรเจกต์</label>
+                  <textarea
+                    id="experience"
+                    placeholder="บอกเราเกี่ยวกับโปรเจกต์หรือประสบการณ์ที่เคยทำ..."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>อัพโหลดเอกสาร *</label>
+                  <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                    <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx" required />
+                    <p>📎 คลิกเพื่อเลือกไฟล์</p>
+                    <small>Resume, Transcript (PDF/Word สูงสุด 10 MB)</small>
+                    <div class="file-list" id="fileList"></div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="portfolio">Portfolio / GitHub</label>
+                  <input type="url" id="portfolio" placeholder="https://..." />
+                </div>
+
+                <button type="submit" class="solid" style="width: 100%; margin-top: 16px">
+                  ส่งใบสมัคร
+                </button>
+              </form>
+            </div>
+
+            <div class="card" style="margin-top: 24px">
+              <h3 style="margin-bottom: 12px">ขั้นตอนการสมัคร</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <h4>ส่งใบสมัคร</h4>
+                  <p>กรอกข้อมูลและอัพโหลดเอกสารให้ครบถ้วน</p>
+                </div>
+                <div class="timeline-item">
+                  <h4>รอการตรวจสอบ</h4>
+                  <p>ระยะเวลา 3-5 วันทำการ</p>
+                </div>
+                <div class="timeline-item">
+                  <h4>สัมภาษณ์</h4>
+                  <p>สัมภาษณ์ออนไลน์หรือออฟไลน์</p>
+                </div>
+                <div class="timeline-item">
+                  <h4>ประกาศผลและเริ่มฝึกงาน</h4>
+                  <p>แจ้งผลและเตรียมเริ่มงาน</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top: 24px">
+              <h3 style="margin-bottom: 12px">ติดต่อสอบถาม</h3>
+              <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6">
+                📧 อีเมล: hr@technova.com<br />
+                📞 โทร: 02-XXX-XXXX ต่อ 123<br />
+                🌐 เว็บไซต์: www.technova.com
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      function switchTab(tabName) {
+        document.querySelectorAll('.tab-button').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        document.querySelectorAll('.tab-content').forEach(content => {
+          content.classList.remove('active');
+        });
+        
+        event.target.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+      }
+
+      const fileInput = document.getElementById("fileInput");
+      const fileList = document.getElementById("fileList");
+
+      fileInput.addEventListener("change", () => {
+        const files = Array.from(fileInput.files);
+        if (files.length > 0) {
+          fileList.innerHTML = files.map((f) => `<div>✓ ${f.name}</div>`).join("");
+        }
+      });
+
+      document.getElementById("internshipForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = {
+          fullName: document.getElementById("fullName").value,
+          studentId: document.getElementById("studentId").value,
+          faculty: document.getElementById("faculty").value,
+          gpa: document.getElementById("gpa").value,
+          startDate: document.getElementById("startDate").value,
+          duration: document.getElementById("duration").value,
+          phone: document.getElementById("phone").value,
+          email: document.getElementById("email").value,
+          skills: document.getElementById("skills").value,
+          experience: document.getElementById("experience").value,
+          portfolio: document.getElementById("portfolio").value,
+        };
+
+        alert(
+          "✅ ส่งใบสมัครเรียบร้อยแล้ว!\n\nทาง HR จะติดต่อกลับภายใน 3-5 วันทำการ\nโปรดตรวจสอบอีเมลและโทรศัพท์เป็นประจำ"
+        );
+
+        setTimeout(() => {
+          window.location.href = "student.html";
+        }, 2000);
+      });
+
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      if (user.name) {
+        document.getElementById("userAvatar").textContent = user.name.substring(0, 2).toUpperCase();
+      }
+    </script>
+  </body>
+</html>
